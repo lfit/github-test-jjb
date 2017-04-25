@@ -20,7 +20,6 @@
     triggers:
       - github-pull-request:
           build-desc-template: "Test JJB with GHPRB"
-          cron: 'H/5 * * * *'
           trigger-phrase: 'retest this please'
           only-trigger-phrase: false
           github-hooks: true
