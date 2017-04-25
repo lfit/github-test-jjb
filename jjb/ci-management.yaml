@@ -9,26 +9,24 @@
     name: 'odpi-test-jjb'
     properties:
       - github:
-          url: https://github.com/lfit/github-test-jjb
+          url: https://github.com/lfit/github-test-jjb/
 
     scm:
       - git:
           url: git@github.com:lfit/github-test-jjb.git
-          credentials-id: 'lfit-github-test-integration'
-          branches:
-            - +refs/heads/*:refs/remotes/origin/*
-            - +refs/pull/*:refs/remotes/origin/pr/*
-          timeout: 20
+          credentials-id: 'odpi-jenkins-test-jjb'
+          refspec: '+refs/pull/*:refs/remotes/origin/pr/*'
 
     triggers:
       - github-pull-request:
           build-desc-template: "Test JJB with GHPRB"
+          cron: 'H/5 * * * *'
           trigger-phrase: 'retest this please'
-          only-trigger-phrase: true
+          only-trigger-phrase: false
           github-hooks: true
           permit-all: true
           auto-close-on-fail: false
-          admin-list:
-            - JPWKU
           white-list:
-            - JPWKU
+            - jpwku
+          admin-list:
+            - jpwku
