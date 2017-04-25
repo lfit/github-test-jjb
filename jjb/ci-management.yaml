@@ -16,7 +16,6 @@
           url: git@github.com:lfit/github-test-jjb.git
           credentials-id: 'lfit-github-test-integration'
           branches:
-            - +refs/heads/*:refs/remotes/origin/*
             - +refs/pull/*:refs/remotes/origin/pr/*
           timeout: 20
 
