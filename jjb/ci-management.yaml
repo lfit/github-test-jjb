@@ -1,0 +1,34 @@
+---
+- project:
+    name: ci-management-jobs
+    project: 'ci-management'
+    jobs:
+      - 'odpi-test-jjb'
+
+- job-template:
+    name: 'odpi-test-jjb'
+    properties:
+      - github:
+          url: https://github.com/lfit/github-test-jjb
+
+    scm:
+      - git:
+          url: git@github.com:lfit/github-test-jjb.git
+          credentials-id: 'lfit-github-test-integration'
+          branches:
+            - +refs/heads/*:refs/remotes/origin/*
+            - +refs/pull/*:refs/remotes/origin/pr/*
+          timeout: 20
+
+    triggers:
+      - github-pull-request:
+          build-desc-template: "Test JJB with GHPRB"
+          trigger-phrase: 'retest this please'
+          only-trigger-phrase: true
+          github-hooks: true
+          permit-all: true
+          auto-close-on-fail: false
+          admin-list:
+            - JPWKU
+          white-list:
+            - JPWKU
